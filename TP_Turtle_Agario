@@ -1,0 +1,160 @@
+#import des modules
+import math
+import turtle
+import random
+
+"""
+tortue= turtle.Turtle()
+
+#Test de turtle
+tortue.forward(50)
+tortue.left(90)
+tortue.forward(50)
+
+input()
+
+#Exercice 1.1: créer un cercle
+tortue.circle(100)
+
+input()
+
+#Exercice 1.2: créer un carré
+for i in range(4):
+    tortue.forward(50)
+    tortue.left(90)
+
+input()
+
+#Exercice 2.1: créer un escargot carré
+n=0
+while (n != 1000):
+    tortue.forward(n)
+    tortue.left(90)
+    n= n+5
+input()
+
+
+#Exercice 2.2: créer un escargot rond
+n=1
+while (n != 1000):
+    tortue.circle(n,n+1,n+1)
+    n= n+1
+input()
+
+
+#Exercice 3: créer une marche aléatoire v1
+
+tortue1= turtle.Turtle()
+tortue2= turtle.Turtle()
+tortue3= turtle.Turtle()
+
+tortue1.pencolor('#BB3CFA')
+tortue2.pencolor('#51F572')
+tortue3.pencolor('#FF8E47')
+
+while True:
+
+    a= random.randint(-360,360)
+    tortue1.forward(10)
+    tortue1.left(a)
+
+    b= random.randint(-360,360)
+    tortue2.forward(10)
+    tortue2.left(b)
+
+    c= random.randint(-360,360)
+    tortue3.forward(10)
+    tortue3.left(c)
+
+input()
+
+#Exercice 3: créer une marche aléatoire v2
+n=10
+tortues= []
+turtle.delay(0)
+
+
+for i in range(n):
+    color= turtle.Turtle()
+    tortues.append(color)
+    color.color(random.random(),random.random(),random.random())
+    
+
+while True:
+    for i in tortues:
+        i.forward(15)
+        i.left(random.randint(-360,360))
+
+input()
+"""
+
+#Exercice 4: Agar.io like
+
+n=20
+tortues= []
+turtle.delay(0)
+
+for i in range(n):
+    
+    shape= random.randint(1,2)
+
+    var= turtle.Turtle()
+    var.penup()
+
+    var.shape('circle')
+    var.shapesize(shape,shape)
+    
+    tortues.append(var)
+    var.speed(1)
+
+    var.color(random.random(),random.random(),random.random())
+
+    var.setposition(random.randint(-500,500),random.randint(-500,500))
+
+
+def distance(t1,t2):
+    math.sqrt((t1.pos()[0]-t2.pos()[0])**2 + (t1.pos()[1]-t2.pos()[1])**2 )
+
+
+def eat(i,j):
+    j.shapesize(j.shapesize()[0] + i.shapesize()[0] ,j.shapesize()[0] + i.shapesize()[0])
+    i.ht()
+    tortues.remove(i)
+
+def up():
+    var.setheading(90)
+    var.forward(10)
+
+def down():
+    var.setheading(270)
+    var.forward(10)
+
+def left():
+    var.setheading(180)
+    var.forward(10)
+
+def right():
+    var.setheading(0)
+    var.forward(10)
+
+turtle.listen()
+
+turtle.onkey(up, 'Up')
+turtle.onkey(down, 'Down')
+turtle.onkey(left, 'Left')
+turtle.onkey(right, 'Right')
+
+while True:
+    for i in tortues:
+        i.forward(20)
+        i.left(random.randint(-360,360))
+        for j in tortues:
+            if i != j:
+                if i.distance(j) < (i.shapesize()[0] + j.shapesize()[0])*5:
+                    if i.shapesize()[0] <= j.shapesize()[0]:
+                        eat(i,j)
+    if i == 1:
+        break
+
+turtle.mainloop()
+input()
