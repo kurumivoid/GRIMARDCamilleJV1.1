@@ -1,0 +1,45 @@
+# Tir Selection
+
+liste = [98, 22, 15, 32, 2, 74, 63, 70]
+
+def triSelection(liste):
+
+    for i in range(len(liste)):
+        min = i
+
+        for j in range(i+1, len(liste)):
+            if liste[min] > liste[j]:
+                min = j
+        
+        tempoMin = liste[i]
+        liste[i] = liste[min]
+        liste[min]= tempoMin
+
+    return liste
+
+print(triSelection(liste))
+
+
+# Tir Rapide
+
+liste1= [98, 22, 15, 32, 2, 74, 63, 70]
+
+def triRapide(liste1):
+
+    if liste1 == []:
+        return []
+
+    else:
+        milieu = liste1[0]
+        inferieur = []
+        superieur = []
+        for i in liste1[1:]:
+            if i < milieu:
+                inferieur.append(i)
+            else:
+                superieur.append(i)
+
+        return triRapide(inferieur)+[milieu]+triRapide(superieur)
+
+
+print(triRapide(liste1))
